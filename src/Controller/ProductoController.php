@@ -50,11 +50,11 @@ class ProductoController extends AppController
         if ($this->request->is('post')) {
             $producto = $this->Producto->patchEntity($producto, $this->request->getData());
             if ($this->Producto->save($producto)) {
-                $this->Flash->success(__('The producto has been saved.'));
+                $this->Flash->success(__('El producto fue guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The producto could not be saved. Please, try again.'));
+            $this->Flash->error(__('El producto no pudo ser guardado. Por favor, vuelva a intentarlo.'));
         }
         $this->set(compact('producto'));
     }
@@ -74,11 +74,11 @@ class ProductoController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $producto = $this->Producto->patchEntity($producto, $this->request->getData());
             if ($this->Producto->save($producto)) {
-                $this->Flash->success(__('The producto has been saved.'));
+                $this->Flash->success(__('El producto fue editado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The producto could not be saved. Please, try again.'));
+            $this->Flash->error(__('El producto no pudo ser editado. Por favor, vuelva a intentarlo.'));
         }
         $this->set(compact('producto'));
     }
@@ -95,9 +95,9 @@ class ProductoController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $producto = $this->Producto->get($id);
         if ($this->Producto->delete($producto)) {
-            $this->Flash->success(__('The producto has been deleted.'));
+            $this->Flash->success(__('El producto fue eliminado.'));
         } else {
-            $this->Flash->error(__('The producto could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El producto no pudo ser eliminado. Por favor, vuelva a intentarlo.'));
         }
 
         return $this->redirect(['action' => 'index']);

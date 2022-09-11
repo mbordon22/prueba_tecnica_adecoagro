@@ -67,28 +67,46 @@ class ProveedoresTable extends Table
             ->notEmptyString('apellido');
 
         $validator
-            ->scalar('dni')
+            ->numeric('dni', 'El campo tiene que ser númerico')
             ->maxLength('dni', 255)
             ->requirePresence('dni', 'create')
-            ->notEmptyString('dni');
+            ->notEmptyString('dni')
+            ->add('dni',[
+                'length' => [
+                    'rule' => ['minLength', 7],
+                    'message' => 'El número de DNI debe tener al menos 7 digitos'
+                ]
+            ]);
 
         $validator
             ->scalar('domicilio')
             ->maxLength('domicilio', 500)
             ->requirePresence('domicilio', 'create')
-            ->notEmptyString('domicilio');
+            ->notEmptyString('domicilio')
+            ->add('domicilio',[
+                'length' => [
+                    'rule' => ['minLength', 10],
+                    'message' => 'El domicilio debe tener al menos 10 digitos'
+                ]
+            ]);
 
         $validator
-            ->scalar('mail')
+            ->email('mail',false,'El campo tiene que ser un email valido')
             ->maxLength('mail', 255)
             ->requirePresence('mail', 'create')
             ->notEmptyString('mail');
 
         $validator
-            ->scalar('telefono')
+            ->numeric('telefono', 'El campo tiene que ser númerico')
             ->maxLength('telefono', 255)
             ->requirePresence('telefono', 'create')
-            ->notEmptyString('telefono');
+            ->notEmptyString('telefono')
+            ->add('telefono',[
+                'length' => [
+                    'rule' => ['minLength', 8],
+                    'message' => 'El telefono debe tener al menos 8 digitos'
+                ]
+            ]);
 
         return $validator;
     }
